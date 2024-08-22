@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Banner</title>
+    <link rel="stylesheet"  href="">
+</head>
+<body>
+
+    <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="images/photo1.png" alt=""></div>
+            <div class="item" style="--position: 2"><img src="images/photo2.png" alt=""></div>
+            <div class="item" style="--position: 3"><img src="images/photo3.png" alt=""></div>
+            <div class="item" style="--position: 4"><img src="images/photo4.png" alt=""></div>
+            <div class="item" style="--position: 5"><img src="images/photo5.png" alt=""></div>
+            <div class="item" style="--position: 6"><img src="images/photo6.jpg" alt=""></div>
+            <div class="item" style="--position: 7"><img src="images/photo2.png" alt=""></div>
+            <div class="item" style="--position: 8"><img src="images/photo3.png" alt=""></div>
+            <div class="item" style="--position: 9"><img src="images/photo4.png" alt=""></div>
+            <div class="item" style="--position: 10"><img src="images/photo5.png" alt=""></div>
+        </div>
+        <div class="background-text">
+            <p data-content="HAPPY BIRTHDAY">
+                HAPPY BIRTHDAY
+                 KHUSHII!!
+            </p>
+        </div>
+        <div class="content">
+            <div class="model"></div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<style>
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #000000;
+    background-image:
+    repeating-linear-gradient(
+        to right, transparent 0 100px,
+        #25283b22 100px 101px
+    ),
+    repeating-linear-gradient(
+        to bottom, transparent 0 100px,
+        #25283b22 100px 101px
+    );
+}
+
+body::before{
+    position: absolute;
+    width: min(1400px, 90vw);
+    top: 10%;
+    left: 50%;
+    height: 90%;
+    transform: translateX(-50%);
+    content: '';
+    background-image: url(images/bg.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    pointer-events: none;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-text {
+    position: absolute;
+    top: 10px; /* Position the text near the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Ensure it is on top */
+    opacity: 0; /* Initially hidden */
+    animation: fadeInOut 4s ease-in-out infinite; /* Infinite fade-in-out animation */
+}
+
+.background-text p {
+    font-family: 'ICA Rubrik';
+    font-size: 5em;
+    color: #ffffff;
+    -webkit-text-stroke: 4px #ffffff;
+    position: relative;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 20%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 1;
+}
+
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
+}
+
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.banner .content .model{
+    background-image: url(images/model3.png);
+    width: 1200px;
+    height: 900px;
+    position:sticky;
+    bottom: 20px;
+    left: 0;
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 1;
+}
+
+/* Adjustments for different iPhone screen sizes */
+
+@media screen and (max-width: 1023px) {
+    .banner .slider{
+        width: 160px;
+        height: 200px;
+        left: calc(50% - 80px);
+    }
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(300px);
+    }
+    .background-text p {
+        font-size: 6em;
+    }
+    .banner .content .model {
+        width: 1200px;
+        height: 600px;
+        background-size: auto 120%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .banner .slider{
+        width: 100px;
+        height: 150px;
+        left: calc(50% - 50px);
+    }
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
+    }
+    .background-text p {
+        font-size: 4em;
+    }
+    .banner .content .model {
+        width: 1000px;
+        height: 500px;
+        background-size: auto 110%;
+    }
+}
+
+/* Additional media queries for smaller iPhone screens */
+
+@media screen and (max-width: 375px) {
+    .banner .slider {
+        width: 80px;
+        height: 120px;
+        left: calc(50% - 40px);
+    }
+    .banner .slider .item {
+        transform: 
+            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(150px);
+    }
+    .background-text p {
+        font-size: 3em;
+    }
+    .banner .content .model {
+        width: 800px;
+        height: 400px;
+        background-size: auto 100%;
+    }
+}
+</style>
