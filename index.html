@@ -22,10 +22,7 @@
             <div class="item" style="--position: 10"><img src="images/photo5.png" alt=""></div>
         </div>
         <div class="background-text">
-            <p data-content="HAPPY BIRTHDAY">
-                HAPPY BIRTHDAY
-                 KHUSHII!!
-            </p>
+            <p data-content="HAPPY BIRTHDAY">HAPPY BIRTHDAY!!</p>
         </div>
         <div class="content">
             <div class="model"></div>
@@ -83,7 +80,7 @@ body::before{
 
 .background-text {
     position: absolute;
-    top: 10px; /* Position the text near the top */
+    top: 15px; /* Position the text near the top */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2; /* Ensure it is on top */
@@ -92,9 +89,9 @@ body::before{
 }
 
 .background-text p {
-    font-family: 'ICA Rubrik';
-    font-size: 5em;
-    color: #ffffff;
+    font-family: 'Georgia';
+    font-size: 16px;
+    color: #00cff3;
     -webkit-text-stroke: 4px #ffffff;
     position: relative;
 }
@@ -157,8 +154,8 @@ body::before{
     background-image: url(images/model3.png);
     width: 1200px;
     height: 900px;
-    position:sticky;
-    bottom: 20px;
+    position: sticky;
+    bottom: 0px;
     left: 0;
     background-size: auto 130%;
     background-repeat: no-repeat;
@@ -166,7 +163,6 @@ body::before{
     z-index: 1;
 }
 
-/* Adjustments for different iPhone screen sizes */
 
 @media screen and (max-width: 1023px) {
     .banner .slider{
@@ -210,7 +206,6 @@ body::before{
     }
 }
 
-/* Additional media queries for smaller iPhone screens */
 
 @media screen and (max-width: 375px) {
     .banner .slider {
